@@ -444,10 +444,10 @@ static int nandflash_detect_onfi(struct nand_chip *chip)
 
 	nand_command(CMD_READ_ONFI);
 	nand_address(0x00);
-	
+
 	nand_wait_ready();
 	nand_command(CMD_READ_1);
-	
+
 	for (i = 0; i < 3; i++) {
 		param = onfi_params;
 		/* Read the onfi parameter table */
@@ -679,7 +679,7 @@ static int nand_read_status(void)
 }
 
 #ifdef CONFIG_NANDFLASH_SMALL_BLOCKS
-static int nand_read_sector(struct nand_info *nand, 
+static int nand_read_sector(struct nand_info *nand,
 			unsigned int row_address,
 			unsigned char *buffer,
 			unsigned int zone_flag)
@@ -745,7 +745,7 @@ static int nand_read_sector(struct nand_info *nand,
 #else /* large blocks */
 static int nand_read_sector(struct nand_info *nand,
 				unsigned int row_address,
-				unsigned char *buffer, 
+				unsigned char *buffer,
 				unsigned int zone_flag)
 {
 	unsigned int readbytes, i;
@@ -875,6 +875,7 @@ static int nand_read_page(struct nand_info *nand,
 
 	retval = nand_read_sector(nand, row_address, buffer,
 				ZONE_DATA | ZONE_INFO);
+    dbg_hexdump(buffer, 100, DUMP_WIDTH_BIT_8);
 	if (retval)
 		return -1;
 
