@@ -71,6 +71,8 @@ static struct nand_chip nand_ids[] = {
 	{0xaddc, 0x1000, 0x20000, 0x800, 0x40, 0x0},
 	/* EON EN27LN1G08 128MB */
 	{0x92f1, 0x400, 0x20000, 0x800, 0x40, 0x0},
+    {0x2ccc, 0x800, 0x20000, 0x800, 0x40, 0x1}, // MT29F4G16ABA REV D, E, F
++	{0x01cc, 0x800, 0x20000, 0x800, 0x40, 0x1}, // S34ML04G1 REV G, H, HDCU // ADD for new board
 #endif
 	{0,}
 };
@@ -875,7 +877,7 @@ static int nand_read_page(struct nand_info *nand,
 
 	retval = nand_read_sector(nand, row_address, buffer,
 				ZONE_DATA | ZONE_INFO);
-    dbg_hexdump(buffer, 100, DUMP_WIDTH_BIT_32);
+    dbg_hexdump(buffer, 100, DUMP_WIDTH_BIT_8);
 	if (retval)
 		return -1;
 
