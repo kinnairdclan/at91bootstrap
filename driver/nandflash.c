@@ -875,7 +875,7 @@ static int nand_read_page(struct nand_info *nand,
 
 	retval = nand_read_sector(nand, row_address, buffer,
 				ZONE_DATA | ZONE_INFO);
-    dbg_hexdump(buffer, 100, DUMP_WIDTH_BIT_16);
+    dbg_hexdump(buffer, 100, DUMP_WIDTH_BIT_32);
 	if (retval)
 		return -1;
 
